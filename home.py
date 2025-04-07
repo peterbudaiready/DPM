@@ -4,8 +4,8 @@ import datetime
 from supabase import create_client, Client
 
 # --- CONFIG ---
-SUPABASE_URL = "https://your-url.supabase.co"
-SUPABASE_KEY = "your-supabase-service-role-key"
+SUPABASE_URL = "db.pckftxhpmfebxlnfhepq.supabase.co"
+SUPABASE_KEY = "postgresql://postgres:Aaabacadae1.@db.pckftxhpmfebxlnfhepq.supabase.co:5432/postgres"
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 system_current_date = datetime.date.today()
