@@ -201,4 +201,4 @@ combined_chart_data = pd.merge(
     how="outer"
 ).sort_values("Time").fillna(0)
 
-st.line_chart(combined_chart_data.set_index("Time"))
+st.bar_chart(combined_chart_data.set_index("Time"))
