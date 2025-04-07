@@ -10,6 +10,8 @@ last_month_date = pd.Timestamp(system_current_date - datetime.timedelta(days=30)
 
 st.set_page_config(layout="wide")
 
+st.image("logo.png", caption="")
+
 # Database
 DB_FILE = "data.db"
 EXPENSES_TABLE = "expenses"
