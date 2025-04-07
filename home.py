@@ -23,10 +23,17 @@ def load_table(table_name: str) -> pd.DataFrame:
     return pd.DataFrame(response.data)
 
 def save_table(df: pd.DataFrame, table_name: str):
-    supabase.table(table_name).delete().neq("id", 0).execute()  # delete all
+    supabase.table(table_name).delete().neq("id", 0).execute()  # Clear table
+    
     for _, row in df.iterrows():
         data = row.to_dict()
-        data.pop("id", None)  # let Supabase autogenerate it
+
+        # Convert datetime/date/Timestamp to ISO string
+        for k, v in data.items():
+            if isinstance(v, (datetime.datetime, datetime.date, pd.Timestamp)):
+                data[k] = v.isoformat()
+
+        data.pop("id", None)  # Remove ID if present
         supabase.table(table_name).insert(data).execute()
 
 # --- Load Tables ---
